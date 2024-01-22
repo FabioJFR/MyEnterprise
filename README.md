@@ -1,5 +1,7 @@
 # MyEnterprise
 
+
+
 Protegido por CC License
 Este software está protegido com a Creative Commons Licence, e poderá ser usado, editado e alterado por qualquer individuo ou organização desde que os direitos sejam sempre atribuidos ao autor , e qualquer mudança ou alteração deverá sempre fazer referencia ao mesmo.
 
@@ -11,6 +13,7 @@ Esta aplicação tem como função ter armazenado no seu dispositovo um registo 
 Campos de cada classe de registo :
 
 Pessoas:
+
 - Nome - tipo texto
 - Idade - tipo numérico
 - Morada - tipo texto
@@ -25,6 +28,7 @@ Pessoas:
 - Peso - tipo decimal
 
 Manager:
+
 - (os mesmos que pessoa)
 - Trabalho - tipo texto
 - Salário - tipo decimal
@@ -33,9 +37,11 @@ Manager:
 - Curriculum Vitae - exclisivamente .pdf
 
 Empregado:
--(os mesmos que Manager)
+
+- (os mesmos que Manager)
 
 Candidatos:
+
 - (os mesmos que Pessoas)
 - Data atual
 - Posto de trabalho a que se aplica
