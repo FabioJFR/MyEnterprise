@@ -1,7 +1,5 @@
-from person import Person
-from storage import Storage
-
-
+from classes.person import Person
+from basedados.storage import Storage
 
 class Manager(Person):
     """

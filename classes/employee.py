@@ -1,4 +1,4 @@
-from manager import Manager
+from classes.manager import Manager
 
 class Employee(Manager):
     def __init__(self, name=None, age=None, job=None, adress=None, phone=0, email=None,social_network=None, country=None, nacionality=None, doc_ident=0, nif=0, pay=0.0, section=None, start_date=0, end_date=0, resume=None, height=0, weight=0):

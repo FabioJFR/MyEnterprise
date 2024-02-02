@@ -1,25 +1,21 @@
 import tkinter as tk
-import logging
-from personGui import PersonGui
-from managerGui import ManagerGui
-from employeeGui import EmployeeGui
-from candidateGui import CandidateGui
-from mainGui import MainGui
+from interface.personGui import PersonGui
+from interface.managerGui import ManagerGui
+from interface.employeeGui import EmployeeGui
+from interface.candidateGui import CandidateGui
+from interface.mainGui import MainGui
+from interface.sobreGui import SobreGui
 from tkinter.messagebox import *
+import logging
+
 
 # controller gui
 class Controller:
     def __init__(self, root):
         self.root = root
-        self.setup_logging()
         self.show_mainGui()
-    
-    # setup loggin errors
-    def setup_logging(self):
-        for handler in logging.root.handlers[:]:
-            logging.root.removeHandler(handler)
-        logging.basicConfig(filename='/Volumes/Programing/VSCode_Projects/programing_python_book/5_step_Adding_GUI/pratica_conhecimento/MyEnterprise/app.log', encoding='utf-8' ,filemode='a', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)c')
-
+        self.setup_logging()
+        
 
     def show_mainGui(self):
         try:
@@ -31,6 +27,10 @@ class Controller:
                 self.employeeGui.destroy()
             if hasattr(self, 'candidateGui'):
                 self.candidateGui.destroy()
+            if hasattr(self, 'sobreGui'):
+                self.sobreGui.destroy()
+            if hasattr(self, 'mainGui'):
+                self.mainGui.destroy()
 
             self.mainGui = MainGui(self.root, self)
             self.mainGui.pack()
@@ -40,8 +40,6 @@ class Controller:
             self.show_error_message("Error in MainGui Frame", str(e))
         
 
-
-        
     def show_personGui(self):
         try:
             self.mainGui.destroy()
@@ -51,6 +49,8 @@ class Controller:
                 self.employeeGui.destroy()
             if hasattr(self, 'candidateGui'):
                 self.candidateGui.destroy()
+            if hasattr(self, 'sobreGui'):
+                self.sobreGui.destroy()
 
             self.personGui = PersonGui(self.root, self)
             self.personGui.pack()
@@ -69,6 +69,8 @@ class Controller:
                 self.employeeGui.destroy()
             if hasattr(self, 'candidateGui'):
                 self.candidateGui.destroy()
+            if hasattr(self, 'sobreGui'):
+                self.sobreGui.destroy()
             
             self.managerGui = ManagerGui(self.root, self)
             self.managerGui.pack()
@@ -85,6 +87,8 @@ class Controller:
                 self.managerGui.destroy()
             if hasattr(self, 'candidateGui'):
                 self.candidateGui.destroy()
+            if hasattr(self, 'sobreGui'):
+                self.sobreGui.destroy()
 
             self.employeeGui = EmployeeGui(self.root, self)
             self.employeeGui.pack()
@@ -99,14 +103,38 @@ class Controller:
                 self.personGui.destroy()
             if hasattr(self, 'managerGui'):
                 self.managerGui.destroy()
-            if hasattr(self, 'employeegui'):
+            if hasattr(self, 'employeeGui'):
                 self.employeeGui.destroy()
+            if hasattr(self, 'sobreGui'):
+                self.sobreGui.destroy()
 
             self.candidateGui = CandidateGui(self.root, self)
             self.candidateGui.pack()
         except Exception as e:
             logging.error('Error in CandidateGui: %s', str(e))
             self.show_error_message('Error in CandidateGui', str(e))
+
+    def show_sobreGui(self):
+        try:
+            if hasattr(self, 'personGui'):
+                self.personGui.destroy()
+            if hasattr(self, 'managerGui'):
+                self.managerGui.destroy()
+            if hasattr(self, 'employeeGui'):
+                self.employeeGui.destroy()
+            if hasattr(self, 'candidateGui'):
+                self.candidateGui.destroy()
+            if hasattr(self, 'mainGui'):
+                self.mainGui.destroy()
+            if hasattr(self, 'sobreGui'):
+                self.sobreGui.destroy()
+
+            self.sobreGui = SobreGui(self.root, self)
+            self.sobreGui.pack()
+
+        except Exception as e:
+            logging.error('Error in SobreGui: %s', str(e))
+            self.show_error_message("Error in SobreGui Frame", str(e))
 
     def show_error_message(self, title, message):
         error_popup = tk.Toplevel(self.root)
@@ -119,4 +147,11 @@ class Controller:
         ok_button.pack(pady=10)
 
 
+    def setup_logging(self):
+        logging.basicConfig(level=logging.DEBUG,  # Set the logging level
+                    format='%(asctime)s [%(levelname)s] %(message)s',
+                    handlers=[logging.FileHandler('logs/enployeegui.log'), logging.StreamHandler()])
+        
     
+    
+

@@ -1,5 +1,5 @@
-from person import Person
-from manager import Manager
+from classes.person import Person
+
 
 class Candidate(Person):
     def __init__(self, name='?', age='?',aplying_job='?' ,phone=0, email='?',social_network='?', resume='?', adress='?', country='?', date='?', status='?', doc_ident=0, nif=0, nacionality='?', height=0, weight=0):
@@ -59,9 +59,4 @@ if __name__ == '__main__':
 
     f = open('/Volumes/Programing/VSCode_Projects/programing_python_book/5_step_Adding_GUI/pratica_conhecimento/MyEnterprise/resume.pdf', 'r', encoding='utf-8')
     print(f.read())
-   
-
-    
-    
-    
     
