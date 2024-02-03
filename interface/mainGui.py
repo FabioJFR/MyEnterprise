@@ -11,7 +11,7 @@ class MainGui(tk.Frame):
         self.photo = tk.PhotoImage(file='imagens/MyEnterprise_icon_300x300.png')
         canvas.create_image(0, 0, anchor=tk.NW, image=self.photo)
 
-        self.label = ttk.Label(self, text='Menu')
+        self.label = ttk.Label(self, text='Menu', font=('Verdana', 12, 'bold'))
         self.label.pack(pady=8,padx=5)
         self.person_button = ttk.Button(self, text='Interface Pessoa', command=self.controller.show_personGui, width=20)
         self.person_button.pack(padx=25,pady=5)
