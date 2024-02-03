@@ -16,3 +16,39 @@
 2024-02-03 01:34:00,409 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x0000021F1F662CC0>
 2024-02-03 20:13:39,947 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1049ecce0>
 2024-02-03 20:14:09,764 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1049ed880>
+2024-02-03 20:37:36,211 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1031384a0>
+2024-02-03 22:07:26,609 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1058f3b00>
+2024-02-03 22:07:36,526 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1058f3d10>
+2024-02-03 22:07:47,310 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1058af4d0>
+2024-02-03 22:22:08,066 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x104de6270>
+2024-02-03 22:22:08,072 [ERROR] Error in ManagerGui: unknown option "-style"
+2024-02-03 22:25:46,054 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x100fcfbf0>
+2024-02-03 22:30:16,300 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x105778710>
+2024-02-03 22:34:50,524 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x10300d310>
+2024-02-03 22:39:06,318 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1030b8da0>
+2024-02-03 22:39:27,251 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1030b9d30>
+2024-02-03 22:39:31,311 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x10308f5f0>
+2024-02-03 22:41:52,240 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1056a3770>
+2024-02-03 22:41:56,335 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1056e7890>
+2024-02-03 22:42:03,499 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1056e47a0>
+2024-02-03 22:52:45,276 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1057ce630>
+2024-02-03 22:52:50,843 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1057f51f0>
+2024-02-03 22:52:53,762 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1057f6270>
+2024-02-03 22:54:32,024 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1059583b0>
+2024-02-03 22:55:08,747 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x102bb83b0>
+2024-02-03 22:57:09,069 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1050053d0>
+2024-02-03 23:02:34,817 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x10103c170>
+2024-02-03 23:04:11,019 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1053f83b0>
+2024-02-03 23:05:22,402 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x100accf20>
+2024-02-03 23:06:57,923 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x104ae0fb0>
+2024-02-03 23:06:57,923 [ERROR] Error in ManagerGui: bad side "ne": must be top, bottom, left, or right
+2024-02-03 23:09:14,035 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1031f4dd0>
+2024-02-03 23:09:14,036 [ERROR] Error in ManagerGui: cannot use geometry manager grid inside .!managergui which already has slaves managed by pack
+2024-02-03 23:10:14,950 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x103296c30>
+2024-02-03 23:11:40,439 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x101333b00>
+2024-02-03 23:11:48,183 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x101333cb0>
+2024-02-03 23:19:35,523 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x100c77c80>
+2024-02-03 23:19:42,821 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x100c7d280>
+2024-02-03 23:19:46,373 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x100c7ddc0>
+2024-02-03 23:22:31,503 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x100c7e540>
+2024-02-03 23:27:55,653 [ERROR] Error in SobreGui: bad screen distance "1.0 white"

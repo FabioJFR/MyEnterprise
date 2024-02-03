@@ -3,7 +3,6 @@ from MyEnterprise.controller import Controller
 import sys
 
 
-
 class MyEnterprise:
     def __init__(self, root):
         self.root = root
