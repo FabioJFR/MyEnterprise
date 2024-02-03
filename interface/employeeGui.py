@@ -14,7 +14,7 @@ class EmployeeGui(tk.Frame):
         self.fieldnames = ('name', 'age', 'job', 'adress', 'phone', 'email','social_network', 'country', 'nacionality', 'doc_ident', 'nif', 'pay', 'section', 'start_date', 'end_date', 'height', 'weight', 'resume')
         self.entries = {}
         self.db = None
-        self.label = tk.Label(self, text='Emplyee Interface')
+        self.label = tk.Label(self, text='Empregados', font=('Helvetica', 12, 'bold'))
         self.label.pack(pady=10)
         self.make_widgets()
         self.setup_logging()
@@ -55,17 +55,18 @@ class EmployeeGui(tk.Frame):
         # Buttons row 1
         row1_buttons = tk.Frame(self)
         row1_buttons.pack(side=tk.TOP)
-        tk.Button(row1_buttons, text='Menu Principal', command=self.controller.show_mainGui, width=15).pack(side=tk.LEFT, padx=1)
-        tk.Button(row1_buttons, text='Criar|Atualizar', command=self.confirm_update_record, width=16).pack(side=tk.LEFT, padx=1)
-        tk.Button(row1_buttons, text='Pegar', command=self.fetch_record, width=15).pack(side=tk.LEFT, padx=1)
+        tk.Button(row1_buttons, text='Criar|Atualizar', command=self.confirm_update_record, width=15).pack(side=tk.LEFT, padx=5,pady=2)
+        tk.Button(row1_buttons, text='Mostrar Campos', command=self.fetch_record, width=15).pack(side=tk.LEFT, padx=5,pady=2)
+        tk.Button(row1_buttons, text='Selecionar Curriculo', command=self.select_resume, width=15).pack(side=tk.LEFT, padx=5,pady=2)
+        tk.Button(row1_buttons, text='Abrir Curriculo', command=self.open_resume_external, width=15).pack(side=tk.RIGHT, padx=5,pady=2)
 
         # Buttons row 2
         row2_buttons = tk.Frame(self)
         row2_buttons.pack(side=tk.BOTTOM)
-        tk.Button(row2_buttons, text='Apagar', command=self.confirm_delete_record, width=10).pack(side=tk.LEFT, padx=1)
-        tk.Button(row2_buttons, text='Limpar', command=self.confirm_clear_board, width=10).pack(side=tk.RIGHT, padx=1)
-        tk.Button(row2_buttons, text='Selecionar Curriculo', command=self.select_resume, width=11).pack(side=tk.RIGHT, padx=1)
-        tk.Button(row2_buttons, text='Abrir Curriculo', command=self.open_resume_external, width=11).pack(side=tk.RIGHT, padx=1)
+        tk.Button(row2_buttons, text='Limpar Campos', command=self.confirm_clear_board, width=15).pack(side=tk.LEFT, padx=5,pady=2)
+        tk.Button(row2_buttons, text='Apagar', command=self.confirm_delete_record, width=15).pack(side=tk.LEFT, padx=5,pady=2)
+        tk.Button(row2_buttons, text='Menu Principal', command=self.controller.show_mainGui, width=15).pack(side=tk.LEFT, padx=5,pady=2)
+        tk.Button(row2_buttons, text='Sair', command=self.quit, width=15).pack(side=tk.RIGHT, padx=5,pady=2)
         
 
     def open_database(self):
