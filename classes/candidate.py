@@ -2,45 +2,37 @@ from classes.person import Person
 
 
 class Candidate(Person):
-    def __init__(self, name='?', age='?',aplying_job='?' ,phone=0, email='?',social_network='?', resume='?', adress='?', country='?', date='?', status='?', doc_ident=0, nif=0, nacionality='?', height=0, weight=0):
-        self.__resume = resume
-        self.__date = date
-        self.__status = status
-        self.__aplying_job = aplying_job
-        super().__init__(name, age, adress, phone, email,social_network, country, doc_ident, nif, nacionality, height, weight)
+    def __init__(self, curriculo='?', data='?', estado='?',candidatura='?', nome='?', idade='?' ,telefone=0, email='?',rede_social='?', morada='?', pais='?', nacionalidade='?', doc_identificacao=0, nif=0):
+        self.__curriculo = curriculo
+        self.__data = data
+        self.__estado = estado
+        self.__candidatura = candidatura
+        super().__init__(nome, idade, morada, telefone, email,rede_social, pais, nacionalidade, doc_identificacao, nif)
 
-    def get_resume(self):
-        return self.__resume
+    def get_curriculo(self):
+        return self.__curriculo
         
-    def set_resume(self, resume):
-        resume = open(resume, 'r', encoding='utf-8')
-        resume1= resume.read()
-        path = f'/Volumes/Programing/VSCode_Projects/programing_python_book/5_step_Adding_GUI/pratica_conhecimento/MyEnterprise/resumes/{self.get_name()}_resume.pdf'
-        resume2 = open(path, 'x')
-        resume2.write(resume1)
-        self.__resume = path
-        resume.close()
-        resume2.close()
 
-    def set_aplying_job(self, aplying_job):
-        self.__aplying_job = aplying_job
+
+    def set_candidatura(self, candidatura):
+        self.__candidatura = candidatura
     
-    def get_aplying_job(self):
-        return self.__aplying_job
+    def get_candidatura(self):
+        return self.__candidatura
 
         
-    def get_date(self):
-        return self.__date
+    def get_data(self):
+        return self.__data
         
-    def set_date(self, date):
-        self.__date = date
+    def set_data(self, data):
+        self.__data = data
         
 
-    def get_status(self):
-        return self.__status
+    def get_estado(self):
+        return self.__estado
         
-    def set_status(self, status):
-        self.__status = status
+    def set_estado(self, estado):
+        self.__estado = estado
 
     
     def get_class_type(self):
@@ -49,14 +41,13 @@ class Candidate(Person):
         
 
 if __name__ == '__main__':
-    candidate1 = Candidate(name='Ivo',age=35,aplying_job='operations',phone=23456,email='mail.pt',social_network='facebook',resume=None,adress='Aljustrel',country='portugal', date='12-03-2020', status='pending',doc_ident=12345,nif=746582,nacionality='portuguesa',height=1.56, weight=70)
-    candidate1.set_resume('/Volumes/Programing/VSCode_Projects/programing_python_book/5_step_Adding_GUI/pratica_conhecimento/MyEnterprise/resume.pdf')
-    print(candidate1.get_resume())
-    print(candidate1.get_date())
-    print(candidate1.get_status())
-    print(candidate1.get_name())
+    candidate1 = Candidate(nome='Ivo',idade=35,candidatura='operations',telefone=23456,email='mail.pt',rede_social='facebook',curriculo='curriculo.pdf',morada='Aljustrel',pais='portugal', data='12-03-2020', estado='pending',doc_identificacao=12345,nif=746582,nacionalidade='portuguesa')
+    print(candidate1)
+    candidate1.get_curriculo()
+    print(candidate1.get_curriculo())
+    print(candidate1.get_data())
+    print(candidate1.get_estado())
+    print(candidate1.get_nome())
     print(candidate1)
 
-    f = open('/Volumes/Programing/VSCode_Projects/programing_python_book/5_step_Adding_GUI/pratica_conhecimento/MyEnterprise/resume.pdf', 'r', encoding='utf-8')
-    print(f.read())
     

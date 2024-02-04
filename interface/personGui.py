@@ -12,7 +12,7 @@ class PersonGui(tk.Frame):
         super().__init__(master)
         self.controller = controller
         self.shelve_name = 'basedados/person_database'
-        self.fieldnames = ('name', 'age', 'adress', 'phone', 'email','social_network', 'country', 'nacionality', 'doc_ident', 'nif')
+        self.fieldnames = ('nome', 'idade', 'morada', 'telefone', 'email','rede_social', 'pais', 'nacionalidade', 'doc_identificacao', 'nif')
         self.entries = {}
         self.db = shelve.open(self.shelve_name, writeback=True)  # Open the database
         self.label = tk.Label(self, text='Pessoas', font=('Verdana', 12, 'bold'))
@@ -150,17 +150,17 @@ class PersonGui(tk.Frame):
                 record = self.db[key]
                 logging.debug(f'Função update_record() - pegou o record.\n {record}')
             else:
-                record = Person(name='?', age='?', adress='?', phone=0, email='?',social_network='?', country='?', nacionality='?',
-                            doc_ident=0, nif=0)
+                record = Person(nome='?', idade='?', morada='?', telefone=0, email='?', rede_social='?', pais='?', nacionalidade='?',
+                            doc_identificacao=0, nif=0)
 
             for field in self.fieldnames:
                 # Use safer alternative ast.literal_eval instead of eval for user input
                 user_input = self.entries[field].get()
                 if user_input:
                     try:
-                        if field in ('age', 'doc_ident', 'nif', 'phone'):
+                        if field in ('idade', 'doc_identificacao', 'nif', 'telefone'):
                             value = int(user_input)
-                        elif field in ('name', 'email', 'social_network', 'address', 'country', 'nationality'):
+                        elif field in ('nome', 'email', 'rede_social', 'morada', 'pais', 'nationalidade'):
                             value = str(user_input).strip("'")
                         else:
                             value = user_input.strip("'")

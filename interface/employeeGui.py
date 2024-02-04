@@ -12,7 +12,7 @@ class EmployeeGui(tk.Frame):
         super().__init__(master)
         self.controller = controller
         self.shelve_name = 'basedados/employee_database'
-        self.fieldnames = ('name', 'age', 'job', 'adress', 'phone', 'email','social_network', 'country', 'nacionality', 'doc_ident', 'nif', 'pay', 'section', 'start_date', 'end_date', 'resume')
+        self.fieldnames = ('nome', 'idade', 'profissao', 'morada', 'telefone', 'email','rede_social', 'pais', 'nacionalidade', 'doc_identificacao', 'nif', 'salario', 'seccao', 'data_inicio', 'data_fim', 'curriculo')
         self.entries = {}
         self.db = None
         self.label = tk.Label(self, text='Empregados', font=('Verdana', 12, 'bold'))
@@ -40,7 +40,7 @@ class EmployeeGui(tk.Frame):
         # Text area with scrollbar
         text_frame = tk.Frame(form)
         text_frame.grid(row=0, column=2, rowspan=len(self.fieldnames) + 1, padx=(10, 0), pady=2, sticky='nsew')
-        L = tk.Label(text_frame, text='Available keys', font=('Verdana', 10, 'bold'))
+        L = tk.Label(text_frame, text='Chaves disponieis', font=('Verdana', 10, 'bold'))
         L.grid(row=0, column=0, pady=1, padx=2,sticky='nesw')
         text_area = tk.Text(text_frame, height=20, width=10, wrap='word', font=('Verdana', 10, 'bold'))
         text_area.grid(row=1, column=0, sticky='nsew')
@@ -157,18 +157,18 @@ class EmployeeGui(tk.Frame):
                 record = self.db[key]
                 
             else:
-                record = Employee(name='?', age='?', job='?', adress='?', phone='?', email='?',social_network='?', country='?', nacionality='?', doc_ident='?', nif='?', pay='?', section='?', start_date='?', end_date='?', resume='?')
+                record = Employee(nome='?', idade='?', profissao='?', morada='?', telefone='?', email='?',rede_social='?', pais='?', nacionalidade='?', doc_identificacao='?', nif='?', salario='?', seccao='?', data_inicio='?', data_fim='?', curriculo='?')
 
             for field in self.fieldnames:
                 # Use safer alternative ast.literal_eval instead of eval for user input
                 user_input = self.entries[field].get()
                 if user_input:
                     try:
-                        if field in ('age', 'doc_ident', 'nif', 'phone'):
+                        if field in ('idade', 'doc_identificacao', 'nif', 'telefone'):
                             value = int(user_input)
-                        elif field in ('pay'):
+                        elif field in ('salario'):
                             value = float(user_input)
-                        elif field in ('name', 'job', 'email', 'social_network', 'address', 'country', 'date', 'start_date', 'end_date', 'section', 'nacionality', 'resume'):
+                        elif field in ('nome', 'profissao', 'email', 'rede_social', 'morada', 'pais', 'data', 'data_inicio', 'data_fim', 'seccao', 'nacionalidade', 'curriculo'):
                             value = str(user_input).strip("'")
                         else:
                             value = user_input.strip("'")

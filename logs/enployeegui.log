@@ -62,3 +62,5 @@ Traceback (most recent call last):
 AttributeError: module 'os' has no attribute 'startfile'
 2024-02-04 15:44:41,113 [DEBUG] Pegando o registo da chave 'luis'
 2024-02-04 15:45:08,480 [DEBUG] Pegando o registo da chave 'luis'
+2024-02-04 18:28:42,168 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1049a7950>
+2024-02-04 18:28:59,981 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1049ca000>
