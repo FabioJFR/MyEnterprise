@@ -112,7 +112,7 @@ class PersonGui(tk.Frame):
 
             if key in self.db:
                 record = self.db[key]
-                logging.debug(f'Registo encontrado {record}')
+                #logging.debug(f'Registo encontrado {record}')
 
                 for field in self.fieldnames:
                     value = repr(getattr(record, field))
@@ -148,7 +148,7 @@ class PersonGui(tk.Frame):
             key = self.entries['key'].get()
             if key in self.db.keys():
                 record = self.db[key]
-                logging.debug(f'Função update_record() - pegou o record.\n {record}')
+                #logging.debug(f'Função update_record() - pegou o record.\n {record}')
             else:
                 record = Person(nome='?', idade='?', morada='?', telefone=0, email='?', rede_social='?', pais='?', nacionalidade='?',
                             doc_identificacao=0, nif=0)

@@ -234,8 +234,8 @@ class ManagerGui(tk.Frame):
         try:
             file_path = filedialog.askopenfilename(title='Selecionar curriculo:', filetypes=[('PDF Files', '*.pdf')])
             if file_path:
-                self.entries['resume'].delete(0, tk.END)
-                self.entries['resume'].insert(0, f"'{file_path}'")
+                self.entries['curriculo'].delete(0, tk.END)
+                self.entries['curriculo'].insert(0, f"'{file_path}'")
         except Exception as e:
             messagebox.showerror(title='Erro!', message='Erro ao selecionar o arquivo, deve ser do tipo PDF.')
             logging.exception(f'9->Erro na função select_resume(): {e}')
@@ -244,7 +244,7 @@ class ManagerGui(tk.Frame):
     def open_resume_external(self):
         try:
             # Get the resume field value (file path)
-            resume_path = ast.literal_eval(self.entries['resume'].get())
+            resume_path = ast.literal_eval(self.entries['curriculo'].get())
             if resume_path:
                 # Use subprocess to open the file in the default PDF viewer
                 subprocess.run(['open', resume_path], check=True)
@@ -269,7 +269,7 @@ class ManagerGui(tk.Frame):
 
     def open_resume_external(self):
         try:
-            resume_path = self.entries['resume'].get().strip("'")
+            resume_path = self.entries['curriculo'].get().strip("'")
             if resume_path:
                 os.startfile(resume_path)
         except FileNotFoundError as e:
@@ -283,8 +283,8 @@ class ManagerGui(tk.Frame):
     def update_resume_entry(self, file_path):
         # Remove single quotes if present
         file_path = file_path.strip("'")
-        self.entries['resume'].delete(0, tk.END)
-        self.entries['resume'].insert(0, file_path) """
+        self.entries['curriculo'].delete(0, tk.END)
+        self.entries['curriculo'].insert(0, file_path) """
 
 
     def setup_logging(self):
