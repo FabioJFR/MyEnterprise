@@ -6,8 +6,12 @@ class SobreGui(tk.Frame):
     def __init__(self, master, controller):
         super().__init__(master)
         self.controller = controller
-        self.label = tk.Label(self, text='Informação', font=('Verdana', 14, 'bold'))
-        self.label.pack(pady=10)
+        padding = 10
+        img_sobre = tk.PhotoImage(file='imagens/sobre_25x25.png')
+        self.label = ttk.Label(self, text='Informação', font=('Verdana', 12, 'bold'), image=img_sobre, compound='left')
+        self.label.image = img_sobre
+        self.label.config(padding=(padding,0,padding,0))
+        self.label.pack(pady=10,padx=10)
         self.make_widgets()
     
     def make_widgets(self):

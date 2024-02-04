@@ -14,8 +14,12 @@ class ManagerGui(tk.Frame):
         self.fieldnames = ('nome', 'idade', 'profissao','telefone', 'email','rede_social', 'seccao', 'salario', 'morada', 'pais', 'nacionalidade', 'doc_identificacao', 'nif', 'data_inicio', 'data_fim', 'curriculo')
         self.entries = {}
         self.db = None
-        self.label = tk.Label(self, text='Chefia', font=('Verdana', 12, 'bold'))
-        self.label.pack(pady=10)
+        padding = 10
+        img_manager = tk.PhotoImage(file='imagens/manager_25x25.png')
+        self.label = ttk.Label(self, text='Menu', font=('Verdana', 12, 'bold'), image=img_manager, compound='left')
+        self.label.image = img_manager
+        self.label.config(padding=(padding,0,padding,0))
+        self.label.pack(pady=10,padx=10)
         self.setup_logging()
         self.make_widgets()
         

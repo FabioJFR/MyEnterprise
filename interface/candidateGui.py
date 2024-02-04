@@ -24,8 +24,12 @@ class CandidateGui(tk.Frame):
         self.fieldnames = ('nome', 'idade', 'candidatura', 'telefone', 'email', 'rede_social', 'morada', 'pais', 'nacionalidade', 'data', 'estado', 'doc_identificacao', 'nif', 'curriculo')
         self.entries = {}
         self.db = None
-        self.label = tk.Label(self, text='Candidatos', font=('Verdana', 12, 'bold'))
-        self.label.pack(pady=10)
+        padding = 10
+        img_candidate = tk.PhotoImage(file='imagens/candidate_25x25.png')
+        self.label = ttk.Label(self, text='Candidatos', font=('Verdana', 12, 'bold'), image=img_candidate, compound='left')
+        self.label.image = img_candidate
+        self.label.config(padding=(padding,0,padding,0))
+        self.label.pack(pady=10,padx=10)
         self.setup_logging()
         self.make_widgets()
         

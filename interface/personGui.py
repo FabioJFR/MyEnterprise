@@ -15,8 +15,12 @@ class PersonGui(tk.Frame):
         self.fieldnames = ('nome', 'idade', 'morada', 'telefone', 'email','rede_social', 'pais', 'nacionalidade', 'doc_identificacao', 'nif')
         self.entries = {}
         self.db = shelve.open(self.shelve_name, writeback=True)  # Open the database
-        self.label = tk.Label(self, text='Pessoas', font=('Verdana', 12, 'bold'))
-        self.label.pack(pady=10)
+        padding = 10
+        img_pessoas = tk.PhotoImage(file='imagens/employee_25x25.png')
+        self.label = ttk.Label(self, text='Pessoas', font=('Verdana', 12, 'bold'), image=img_pessoas, compound='left')
+        self.label.image = img_pessoas
+        self.label.config(padding=(padding,0,padding,0))
+        self.label.pack(pady=10,padx=10)
         self.setup_logging()
         self.make_widgets()
         

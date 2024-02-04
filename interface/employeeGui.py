@@ -15,7 +15,13 @@ class EmployeeGui(tk.Frame):
         self.fieldnames = ('nome', 'idade', 'profissao', 'morada', 'telefone', 'email','rede_social', 'pais', 'nacionalidade', 'doc_identificacao', 'nif', 'salario', 'seccao', 'data_inicio', 'data_fim', 'curriculo')
         self.entries = {}
         self.db = None
-        self.label = tk.Label(self, text='Empregados', font=('Verdana', 12, 'bold'))
+        padding = 10
+        img_employee = tk.PhotoImage(file='imagens/employee_25x25.png')
+        self.label = ttk.Label(self, text='Empregados', font=('Verdana', 12, 'bold'), image=img_employee, compound='left')
+        self.label.image = img_employee
+        self.label.config(padding=(padding,0,padding,0))
+        self.label.pack(pady=10,padx=10)
+
         self.label.pack(pady=10)
         self.setup_logging()
         self.make_widgets()
