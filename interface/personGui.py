@@ -64,21 +64,38 @@ class PersonGui(tk.Frame):
         row1_buttons = tk.Frame(self)
         row1_buttons.pack(side=tk.TOP)
         
-        button_1 = ttk.Button(row1_buttons, text='Criar|Atualizar', command=self.confirm_update_record, width=15, style='W.TButton')
+        img_criar = tk.PhotoImage(file='imagens/create_16x16.png')
+        button_1 = ttk.Button(row1_buttons, text='Criar|Atualizar', command=self.confirm_update_record, width=15, style='W.TButton', image=img_criar, compound='left')
+        button_1.image = img_criar
         button_1.pack(side=tk.LEFT, padx=2,pady=2)
-        button_2 = ttk.Button(row1_buttons, text='Mostrar Campos', command=self.fetch_record, width=15, style='W.TButton')
+
+        img_mostrar = tk.PhotoImage(file='imagens/show_16x16.png')
+        button_2 = ttk.Button(row1_buttons, text='Mostrar Campos', command=self.fetch_record, width=15, style='W.TButton', image=img_mostrar, compound='left')
+        button_2.image = img_mostrar
         button_2.pack(side=tk.LEFT, padx=2,pady=2)
-        button_3 = ttk.Button(row1_buttons, text='Limpar Campos', command=self.confirm_clear_board, width=15, style='W.TButton')
+
+        img_limpar = tk.PhotoImage(file='imagens/clean_16x16.png')
+        button_3 = ttk.Button(row1_buttons, text='Limpar Campos', command=self.confirm_clear_board, width=15, style='W.TButton', image=img_limpar, compound='left')
+        button_3.image = img_limpar
         button_3.pack(side=tk.RIGHT, padx=2,pady=2)
 
         # Buttons row 2
         row2_buttons = tk.Frame(self)
         row2_buttons.pack(side=tk.BOTTOM)
-        button_4 = ttk.Button(row2_buttons, text='Apagar', command=self.confirm_delete_record, width=15, style='W.TButton')
+
+        img_apagar = tk.PhotoImage(file='imagens/delete_16x16.png')
+        button_4 = ttk.Button(row2_buttons, text='Apagar', command=self.confirm_delete_record, width=15, style='W.TButton', image=img_apagar, compound='left')
+        button_4.image = img_apagar
         button_4.pack(side=tk.LEFT, padx=2, pady=2)
-        button_5 = ttk.Button(row2_buttons, text='Menu Principal', command=self.controller.show_mainGui, width=15, style='W.TButton')
+
+        img_menu = tk.PhotoImage(file='imagens/menu_16x16.png')
+        button_5 = ttk.Button(row2_buttons, text='Menu Principal', command=self.controller.show_mainGui, width=15, style='W.TButton', image=img_menu, compound='left')
+        button_5.image = img_menu
         button_5.pack(side=tk.LEFT, padx=2,pady=2)
-        button_6 = ttk.Button(row2_buttons, text='Sair', command=self.quit, width=15, style='W.TButton')
+
+        img_sair = tk.PhotoImage(file='imagens/quit_16x16.png')
+        button_6 = ttk.Button(row2_buttons, text='Sair', command=self.quit, width=15, style='W.TButton', image=img_sair, compound='left')
+        button_6.image = img_sair
         button_6.pack(side=tk.RIGHT, padx=2,pady=2)
         
     def open_database(self):
