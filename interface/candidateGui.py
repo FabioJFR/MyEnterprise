@@ -21,7 +21,7 @@ class CandidateGui(tk.Frame):
         super().__init__(master)
         self.controller = controller
         self.shelve_name = 'basedados/candidate_database'
-        self.fieldnames = ('name', 'age', 'aplying_job', 'phone', 'email', 'social_network', 'adress', 'country', 'date', 'status', 'doc_ident', 'nif', 'nacionality', 'resume')
+        self.fieldnames = ('nome', 'idade', 'candidatura', 'telefone', 'email', 'rede_social', 'morada', 'pais', 'nacionalidade', 'data', 'estado', 'doc_identificacao', 'nif', 'curriculo')
         self.entries = {}
         self.db = None
         self.label = tk.Label(self, text='Candidatos', font=('Verdana', 12, 'bold'))
@@ -51,7 +51,7 @@ class CandidateGui(tk.Frame):
         # Text area with scrollbar
         text_frame = tk.Frame(form)
         text_frame.grid(row=0, column=2, rowspan=len(self.fieldnames) + 1, padx=(10, 0), pady=5, sticky='nsew')
-        L = tk.Label(text_frame, text='Available keys', font=('Verdana', 12, 'bold'))
+        L = tk.Label(text_frame, text='Chaves disponiveis', font=('Verdana', 12, 'bold'))
         L.grid(row=0, column=0, pady=1, padx=2,sticky='nesw')
         text_area = tk.Text(text_frame, height=20, width=10, wrap='word', font=('Verdana', 10, 'bold'))
         text_area.grid(row=1, column=0, sticky='nsew')
@@ -166,16 +166,16 @@ class CandidateGui(tk.Frame):
             if key in self.db.keys():
                 record = self.db[key]
             else:
-                record = Candidate(name='?', age='?', aplying_job='?', phone=0, email='?', social_network='?',adress='?', country='?', date='', status='?', doc_ident=0, nif=0, nacionality='?', resume='?')
+                record = Candidate(nome='?', idade='?', candidatura='?', telefone=0, email='?', rede_social='?',morada='?', pais='?', nacionalidade='?', data='', estado='?', doc_identificacao=0, nif=0, curriculo='?')
 
             for field in self.fieldnames:
                 # Use safer alternative ast.literal_eval instead of eval for user input
                 user_input = self.entries[field].get()
                 if user_input:
                     try:
-                        if field in ('age', 'doc_ident', 'nif', 'phone'):
+                        if field in ('idade', 'doc_identificacao', 'nif', 'telefone'):
                             value = int(user_input)
-                        elif field in ('name', 'aplying_job', 'email', 'social_network', 'adress', 'country', 'date', 'status', 'nacionality'):
+                        elif field in ('nome', 'candidatura', 'email', 'rede_social', 'morada', 'pais', 'data', 'estado', 'nacionalidade'):
                             value = str(user_input).strip("'")
                         else:
                             value = user_input.strip("'")
