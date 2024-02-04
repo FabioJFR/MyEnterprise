@@ -52,3 +52,13 @@
 2024-02-03 23:19:46,373 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x100c7ddc0>
 2024-02-03 23:22:31,503 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x100c7e540>
 2024-02-03 23:27:55,653 [ERROR] Error in SobreGui: bad screen distance "1.0 white"
+2024-02-04 15:32:24,572 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x10104bf80>
+2024-02-04 15:35:06,572 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x1032ab590>
+2024-02-04 15:41:07,926 [ERROR] Error in open_resume_external(): module 'os' has no attribute 'startfile'
+Traceback (most recent call last):
+  File "/Users/fabiorevez/Documents/MyEnterprise/interface/employeeGui.py", line 271, in open_resume_external
+    os.startfile(resume_path)
+    ^^^^^^^^^^^^
+AttributeError: module 'os' has no attribute 'startfile'
+2024-02-04 15:44:41,113 [DEBUG] Pegando o registo da chave 'luis'
+2024-02-04 15:45:08,480 [DEBUG] Pegando o registo da chave 'luis'
