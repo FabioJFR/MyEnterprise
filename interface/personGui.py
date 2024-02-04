@@ -8,17 +8,18 @@ import logging
 
 
 class PersonGui(tk.Frame):
-    def __init__(self, master, controller, shelve_name='basedados/person_database'):
+    def __init__(self, master, controller):
         super().__init__(master)
         self.controller = controller
-        self.shelveName = shelve_name
-        self.fieldnames = ('name', 'age', 'adress', 'phone', 'email','social_network', 'country', 'nacionality', 'doc_ident', 'nif', 'height', 'weight')
+        self.shelve_name = 'basedados/person_database'
+        self.fieldnames = ('name', 'age', 'adress', 'phone', 'email','social_network', 'country', 'nacionality', 'doc_ident', 'nif')
         self.entries = {}
-        self.db = shelve.open(self.shelveName, writeback=True)  # Open the database
-        self.label = tk.Label(self, text='Pessoas', font=('Verdana', 14, 'bold'))
+        self.db = shelve.open(self.shelve_name, writeback=True)  # Open the database
+        self.label = tk.Label(self, text='Pessoas', font=('Verdana', 12, 'bold'))
         self.label.pack(pady=10)
-        self.make_widgets()
         self.setup_logging()
+        self.make_widgets()
+        
 
 
     def make_widgets(self):
@@ -27,54 +28,54 @@ class PersonGui(tk.Frame):
 
         # Labels column
         for i, label in enumerate(('key',) + self.fieldnames):
-            tk.Label(form, text=label, font=('Verdana', 12, 'bold')).grid(row=i, column=0, pady=3.7, sticky='e')
+            tk.Label(form, text=label, font=('Verdana', 10, 'bold')).grid(row=i, column=0, pady=1, sticky='e')
 
         # Entries column
         for i, label in enumerate(('key',) + self.fieldnames):
             ent = ttk.Entry(form)
-            ent.grid(row=i, column=1, pady=3.7, padx=(0, 10), sticky='w')
+            ent.grid(row=i, column=1, pady=1, padx=(0, 10), sticky='w')
             self.entries[label] = ent
 
         # Text field collumn - available keys
         # Text area with scrollbar
         text_frame = tk.Frame(form)
-        text_frame.grid(row=0, column=2, rowspan=len(self.fieldnames) + 1, padx=(10, 0), pady=10, sticky='nsew')
-        L = tk.Label(text_frame, text='Available keys', font=('Verdana', 12, 'bold'))
+        text_frame.grid(row=0, column=2, rowspan=len(self.fieldnames) + 1, padx=(10, 0), pady=2, sticky='nsew')
+        L = tk.Label(text_frame, text='Chaves Disponiveis', font=('Verdana', 10, 'bold'))
         L.grid(row=0, column=0, pady=1,padx=2, sticky='nesw')
-        text_area = tk.Text(text_frame, height=30, width=8, wrap='word', font=('Verdana', 12, 'bold'))
+        text_area = tk.Text(text_frame, height=20, width=8, wrap='word', font=('Verdana', 10, 'bold'))
         text_area.grid(row=1, column=0, sticky='nsew')
         scrollbar = tk.Scrollbar(text_frame, command=text_area.yview)
         scrollbar.grid(row=1, column=1, sticky='ns')
         text_area.config(yscrollcommand=scrollbar.set, state='normal')
         for key in self.db:
             text_area.insert(index=tk.END, chars=f'{key}\n')
-            text_area.tag_configure('center', justify='center', font=('Verdana', 12, 'bold'))
+            text_area.tag_configure('center', justify='center', font=('Verdana', 10, 'bold'))
             text_area.tag_add('center', 1.0, 'end')
         text_area.config(state='disabled') 
 
         style = ttk.Style()
-        style.configure("W.TButton", font=('Verdana', 12))
+        style.configure("W.TButton", font=('Verdana', 10))
 
         # Buttons row 1
         row1_buttons = tk.Frame(self)
         row1_buttons.pack(side=tk.TOP)
         
         button_1 = ttk.Button(row1_buttons, text='Criar|Atualizar', command=self.confirm_update_record, width=15, style='W.TButton')
-        button_1.pack(side=tk.LEFT, padx=5,pady=2)
+        button_1.pack(side=tk.LEFT, padx=2,pady=2)
         button_2 = ttk.Button(row1_buttons, text='Mostrar Campos', command=self.fetch_record, width=15, style='W.TButton')
-        button_2.pack(side=tk.LEFT, padx=5,pady=2)
+        button_2.pack(side=tk.LEFT, padx=2,pady=2)
         button_3 = ttk.Button(row1_buttons, text='Limpar Campos', command=self.confirm_clear_board, width=15, style='W.TButton')
-        button_3.pack(side=tk.RIGHT, padx=5,pady=2)
+        button_3.pack(side=tk.RIGHT, padx=2,pady=2)
 
         # Buttons row 2
         row2_buttons = tk.Frame(self)
         row2_buttons.pack(side=tk.BOTTOM)
         button_4 = ttk.Button(row2_buttons, text='Apagar', command=self.confirm_delete_record, width=15, style='W.TButton')
-        button_4.pack(side=tk.LEFT, padx=5, pady=2)
+        button_4.pack(side=tk.LEFT, padx=2, pady=2)
         button_5 = ttk.Button(row2_buttons, text='Menu Principal', command=self.controller.show_mainGui, width=15, style='W.TButton')
-        button_5.pack(side=tk.LEFT, padx=5,pady=2)
+        button_5.pack(side=tk.LEFT, padx=2,pady=2)
         button_6 = ttk.Button(row2_buttons, text='Sair', command=self.quit, width=15, style='W.TButton')
-        button_6.pack(side=tk.RIGHT, padx=5,pady=2)
+        button_6.pack(side=tk.RIGHT, padx=2,pady=2)
         
     def open_database(self):
         """
@@ -122,7 +123,7 @@ class PersonGui(tk.Frame):
                 messagebox.showinfo(title='Informação', message=f'A chave "{key}" não existe.')
                 logging.debug(f'Chave {key} não encontrada')
 
-        except Exception as e:
+        except (TypeError,ValueError, Exception) as e:
             messagebox.showerror(title='ERRO', message='Ocorreu um erro')
             logging.exception(f'3->Ocorreu um erro na função fetch_record(): {e}')
 
@@ -130,36 +131,11 @@ class PersonGui(tk.Frame):
             self.close_database()
 
 
-
     def confirm_update_record(self):
         confirmed = messagebox.askyesno("Confirme", "Tem a certeza que pretende Criar ou Atualizar o registo?")
         if confirmed:
             self.update_record()
 
-
-    """ def update_record(self):
-        try:
-            self.db = shelve.open(self.shelveName, writeback=True) 
-            key = self.entries['key'].get()
-        except Exception as e:
-            messagebox.showerror(title='ERROR', message=f'An error was raised: {e}')
-        if key in self.db.keys():
-            record = self.db[key]
-        else:
-            record = Person(name='?', age='?', adress='?', phone=0, email='?',social_network='?', country='?', nacionality='?',
-                            doc_ident=0, nif=0, height=0, weight=0)
-
-        for field in self.fieldnames: 
-            # Use safer alternative ast.literal_eval instead of eval for user input
-            try:
-                value = ast.literal_eval(self.entries[field].get())
-            except (SyntaxError, ValueError) as e:
-                messagebox.showerror(title='ERROR', message=f'Error evaluating input: {e}')
-                return
-            setattr(record, field, value)
-
-        self.db[key] = record
-        self.db.close() """
 
     def update_record(self):
         """
@@ -175,7 +151,7 @@ class PersonGui(tk.Frame):
                 logging.debug(f'Função update_record() - pegou o record.\n {record}')
             else:
                 record = Person(name='?', age='?', adress='?', phone=0, email='?',social_network='?', country='?', nacionality='?',
-                            doc_ident=0, nif=0, height=0, weight=0)
+                            doc_ident=0, nif=0)
 
             for field in self.fieldnames:
                 # Use safer alternative ast.literal_eval instead of eval for user input
@@ -184,8 +160,6 @@ class PersonGui(tk.Frame):
                     try:
                         if field in ('age', 'doc_ident', 'nif', 'phone'):
                             value = int(user_input)
-                        elif field in ('height', 'weight'):
-                            value = float(user_input)
                         elif field in ('name', 'email', 'social_network', 'address', 'country', 'nationality'):
                             value = str(user_input).strip("'")
                         else:
@@ -238,4 +212,4 @@ class PersonGui(tk.Frame):
     def setup_logging(self):
         logging.basicConfig(level=logging.DEBUG,  # Set the logging level
                     format='%(asctime)s [%(levelname)s] %(message)s',
-                    handlers=[logging.FileHandler('logs/person.log'), logging.StreamHandler()])
+                    handlers=[logging.FileHandler('logs/persongui.log'), logging.StreamHandler()])

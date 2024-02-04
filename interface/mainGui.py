@@ -12,7 +12,7 @@ class MainGui(tk.Frame):
         canvas.create_image(0, 0, anchor=tk.NW, image=self.photo)
 
         style = ttk.Style()
-        style.configure("W.TButton", font=('Verdana', 12))
+        style.configure("W.TButton", font=('Verdana', 10))
 
         self.label = ttk.Label(self, text='Menu', font=('Verdana', 12, 'bold'))
         self.label.pack(pady=8,padx=5)
@@ -33,5 +33,5 @@ class MainGui(tk.Frame):
         self.button = ttk.Button(self, text='Sair', command=self.quit, width=10, style="W.TButton")
         self.button.pack(padx=10, pady=20)
 
-        self.label_a = ttk.Label(self, text='Produzido por Fábio Revez', font=('Verdana', 12, 'bold'))
+        self.label_a = ttk.Label(self, text='Produzido por Fábio Revez', font=('Verdana', 8, 'bold'))
         self.label_a.pack(padx=1, pady=5, side=tk.BOTTOM)
