@@ -15,8 +15,12 @@ class PersonGui(tk.Frame):
         self.fieldnames = ('nome', 'idade', 'morada', 'telefone', 'email','rede_social', 'pais', 'nacionalidade', 'doc_identificacao', 'nif')
         self.entries = {}
         self.db = shelve.open(self.shelve_name, writeback=True)  # Open the database
-        self.label = tk.Label(self, text='Pessoas', font=('Verdana', 12, 'bold'))
-        self.label.pack(pady=10)
+        padding = 10
+        img_pessoas = tk.PhotoImage(file='imagens/employee_25x25.png')
+        self.label = ttk.Label(self, text='Pessoas', font=('Verdana', 12, 'bold'), image=img_pessoas, compound='left')
+        self.label.image = img_pessoas
+        self.label.config(padding=(padding,0,padding,0))
+        self.label.pack(pady=10,padx=10)
         self.setup_logging()
         self.make_widgets()
         
@@ -112,7 +116,7 @@ class PersonGui(tk.Frame):
 
             if key in self.db:
                 record = self.db[key]
-                logging.debug(f'Registo encontrado {record}')
+                #logging.debug(f'Registo encontrado {record}')
 
                 for field in self.fieldnames:
                     value = repr(getattr(record, field))
@@ -148,7 +152,7 @@ class PersonGui(tk.Frame):
             key = self.entries['key'].get()
             if key in self.db.keys():
                 record = self.db[key]
-                logging.debug(f'Função update_record() - pegou o record.\n {record}')
+                #logging.debug(f'Função update_record() - pegou o record.\n {record}')
             else:
                 record = Person(nome='?', idade='?', morada='?', telefone=0, email='?', rede_social='?', pais='?', nacionalidade='?',
                             doc_identificacao=0, nif=0)

@@ -15,7 +15,13 @@ class EmployeeGui(tk.Frame):
         self.fieldnames = ('nome', 'idade', 'profissao', 'morada', 'telefone', 'email','rede_social', 'pais', 'nacionalidade', 'doc_identificacao', 'nif', 'salario', 'seccao', 'data_inicio', 'data_fim', 'curriculo')
         self.entries = {}
         self.db = None
-        self.label = tk.Label(self, text='Empregados', font=('Verdana', 12, 'bold'))
+        padding = 10
+        img_employee = tk.PhotoImage(file='imagens/employee_25x25.png')
+        self.label = ttk.Label(self, text='Empregados', font=('Verdana', 12, 'bold'), image=img_employee, compound='left')
+        self.label.image = img_employee
+        self.label.config(padding=(padding,0,padding,0))
+        self.label.pack(pady=10,padx=10)
+
         self.label.pack(pady=10)
         self.setup_logging()
         self.make_widgets()
@@ -230,10 +236,10 @@ class EmployeeGui(tk.Frame):
     # for mac (we use open() to open the file)
     def select_resume(self):
         try:
-            file_path = filedialog.askopenfilename(title='Select Resume', filetypes=[('PDF Files', '*.pdf')])
+            file_path = filedialog.askopenfilename(title='Selecione o Curriculo:', filetypes=[('PDF Files', '*.pdf')])
             if file_path:
-                self.entries['resume'].delete(0, tk.END)
-                self.entries['resume'].insert(0, f"'{file_path}'")
+                self.entries['curriculo'].delete(0, tk.END)
+                self.entries['curriculo'].insert(0, f"'{file_path}'")
         except Exception as e:
             logging.exception(f'7->Erro na função select_resume(): {e}')
     
@@ -242,7 +248,7 @@ class EmployeeGui(tk.Frame):
     def open_resume_external(self):
         try:
             # Get the resume field value (file path)
-            resume_path = ast.literal_eval(self.entries['resume'].get())
+            resume_path = ast.literal_eval(self.entries['curriculo'].get())
             if resume_path:
                 # Use subprocess to open the file in the default PDF viewer
                 subprocess.run(['open', resume_path], check=True)
@@ -253,7 +259,7 @@ class EmployeeGui(tk.Frame):
     """ # para windows (we use the os library)
     def select_resume(self):
         try:
-            file_path = filedialog.askopenfilename(title='Select Resume', filetypes=[('PDF Files', '*.pdf')])
+            file_path = filedialog.askopenfilename(title='Selcione o curriculo:', filetypes=[('PDF Files', '*.pdf')])
             if file_path:
                 self.update_resume_entry(file_path)
         except FileNotFoundError as e:
@@ -266,7 +272,7 @@ class EmployeeGui(tk.Frame):
 
     def open_resume_external(self):
         try:
-            resume_path = self.entries['resume'].get().strip("'")
+            resume_path = self.entries['curriculo'].get().strip("'")
             if resume_path:
                 os.startfile(resume_path)
         except FileNotFoundError as e:
@@ -280,8 +286,8 @@ class EmployeeGui(tk.Frame):
     def update_resume_entry(self, file_path):
         # Remove single quotes if present
         file_path = file_path.strip("'")
-        self.entries['resume'].delete(0, tk.END)
-        self.entries['resume'].insert(0, file_path) """
+        self.entries['curriculo'].delete(0, tk.END)
+        self.entries['curriculo'].insert(0, file_path) """
 
 
     def setup_logging(self):

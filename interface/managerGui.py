@@ -14,8 +14,12 @@ class ManagerGui(tk.Frame):
         self.fieldnames = ('nome', 'idade', 'profissao','telefone', 'email','rede_social', 'seccao', 'salario', 'morada', 'pais', 'nacionalidade', 'doc_identificacao', 'nif', 'data_inicio', 'data_fim', 'curriculo')
         self.entries = {}
         self.db = None
-        self.label = tk.Label(self, text='Chefia', font=('Verdana', 12, 'bold'))
-        self.label.pack(pady=10)
+        padding = 10
+        img_manager = tk.PhotoImage(file='imagens/manager_25x25.png')
+        self.label = ttk.Label(self, text='Menu', font=('Verdana', 12, 'bold'), image=img_manager, compound='left')
+        self.label.image = img_manager
+        self.label.config(padding=(padding,0,padding,0))
+        self.label.pack(pady=10,padx=10)
         self.setup_logging()
         self.make_widgets()
         
@@ -234,8 +238,8 @@ class ManagerGui(tk.Frame):
         try:
             file_path = filedialog.askopenfilename(title='Selecionar curriculo:', filetypes=[('PDF Files', '*.pdf')])
             if file_path:
-                self.entries['resume'].delete(0, tk.END)
-                self.entries['resume'].insert(0, f"'{file_path}'")
+                self.entries['curriculo'].delete(0, tk.END)
+                self.entries['curriculo'].insert(0, f"'{file_path}'")
         except Exception as e:
             messagebox.showerror(title='Erro!', message='Erro ao selecionar o arquivo, deve ser do tipo PDF.')
             logging.exception(f'9->Erro na função select_resume(): {e}')
@@ -244,7 +248,7 @@ class ManagerGui(tk.Frame):
     def open_resume_external(self):
         try:
             # Get the resume field value (file path)
-            resume_path = ast.literal_eval(self.entries['resume'].get())
+            resume_path = ast.literal_eval(self.entries['curriculo'].get())
             if resume_path:
                 # Use subprocess to open the file in the default PDF viewer
                 subprocess.run(['open', resume_path], check=True)
@@ -269,7 +273,7 @@ class ManagerGui(tk.Frame):
 
     def open_resume_external(self):
         try:
-            resume_path = self.entries['resume'].get().strip("'")
+            resume_path = self.entries['curriculo'].get().strip("'")
             if resume_path:
                 os.startfile(resume_path)
         except FileNotFoundError as e:
@@ -283,8 +287,8 @@ class ManagerGui(tk.Frame):
     def update_resume_entry(self, file_path):
         # Remove single quotes if present
         file_path = file_path.strip("'")
-        self.entries['resume'].delete(0, tk.END)
-        self.entries['resume'].insert(0, file_path) """
+        self.entries['curriculo'].delete(0, tk.END)
+        self.entries['curriculo'].insert(0, file_path) """
 
 
     def setup_logging(self):
