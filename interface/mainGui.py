@@ -19,13 +19,13 @@ class MainGui(tk.Frame):
         img_menu = tk.PhotoImage(file='imagens/menu_25x25.png')
         self.label = ttk.Label(self, text='Menu', font=('Verdana', 12, 'bold'), image=img_menu, compound='left')
         self.label.image = img_menu
-        self.label.config(padding=(padding,0,padding,0))
+        #self.label.config(padding=(padding,0,padding,0))
         self.label.pack(pady=10,padx=10)
 
         img_1 = tk.PhotoImage(file="imagens/pessoas_16x16.png")
         self.person_button = ttk.Button(self, text='Interface Pessoa', command=self.controller.show_personGui, width=30, style="W.TButton", image=img_1, compound='left')
         self.person_button.image = img_1
-        self.person_button.config(padding=(padding,0 , padding,0))
+        #self.person_button.config(padding=(padding,0 , padding,0))
         self.person_button.pack(padx=25,pady=5)
 
         img_manager = tk.PhotoImage(file="imagens/manager_16x16.png")

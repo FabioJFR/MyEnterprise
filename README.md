@@ -1,7 +1,7 @@
 # MyEnterprise
 
 
-Protegido por CC License (ver ficheiro 'LICENCE')
+Protegido por a CC License (ver ficheiro 'LICENCE')
 
 Este software está protegido com a Creative Commons Licence, e poderá ser usado, editado e alterado por qualquer individuo ou organização desde que os direitos sejam sempre atribuidos ao autor , e qualquer mudança ou alteração deverá sempre fazer referencia ao mesmo.
 
@@ -24,8 +24,7 @@ Pessoas:
 - Nacionalidade - tipo texto
 - Documento identificação - tipo numerico
 - Numero Fiscal - tipo numérico
-- Altura - tipo decimal
-- Peso - tipo decimal
+
 
 Manager:
 
@@ -47,3 +46,23 @@ Candidatos:
 - Posto de trabalho a que se aplica
 - Curriculum Vitae
 - Estado da candidatura
+
+Icons:
+
+- https://www.flaticon.com
+
+- https://icons8.com
+
+Intruções:
+
+- O campo 'key' deverá ser intruduzido em texto e deverá estar entre aspas, este campo é o valor associado a cada registo e deverá ser diferente para cada um dos registos:
+    - exemplo:
+        - se quiser defenir o campo 'key' para nome deverá intruduzir: 'nome'
+
+- Todos os campos restantes têm o seu tipo defenido e poderá adicionar os valores que quiser sem usar as aspas.
+
+- Os curriculos devem estar no formato .pdf
+
+- Deve (não obrigatorio) criar uma pasta onde guarda todos os curriculos, o programa encarrega-se 
+de criar uma ligação para os mesmos, se o curriculo for apagado a plicação irá informar um erro, deve fornecer um curriculo novo usando o botão 'Selecionar Curriculo'.
+

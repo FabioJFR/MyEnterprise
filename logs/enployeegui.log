@@ -210,3 +210,6 @@ AttributeError: 'Employee' object has no attribute 'nome'. Did you mean: 'name'?
 2024-02-04 19:52:12,088 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x100e7f8c0>
 2024-02-04 21:11:00,700 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x102ef1640>
 2024-02-04 21:11:13,754 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x102ef2f60>
+2024-02-04 21:42:14,014 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x104dfbc20>
+2024-02-04 22:30:25,139 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x10109dfa0>
+2024-02-04 22:30:42,885 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x101075d90>
