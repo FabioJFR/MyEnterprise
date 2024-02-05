@@ -8,6 +8,9 @@ import logging
 
 
 class PersonGui(tk.Frame):
+    DB_FILE = 'basedados/person_database'
+    LOG_FILE = 'logs/persongui.log'
+
     def __init__(self, master, controller):
         super().__init__(master)
         self.controller = controller
@@ -94,63 +97,65 @@ class PersonGui(tk.Frame):
         button_5.pack(side=tk.LEFT, padx=2,pady=2)
 
         img_sair = tk.PhotoImage(file='imagens/quit_16x16.png')
-        button_6 = ttk.Button(row2_buttons, text='Sair', command=self.quit, width=15, style='W.TButton', image=img_sair, compound='left')
+        button_6 = ttk.Button(row2_buttons, text='Sair', command=self.quit_application, width=15, style='W.TButton', image=img_sair, compound='left')
         button_6.image = img_sair
         button_6.pack(side=tk.RIGHT, padx=2,pady=2)
         
     def open_database(self):
-        """
-            Open the shelve database and assign it to self.db.
-            Display an error message if an exception occurs.
-        """
         try:
-            self.db = shelve.open(self.shelve_name, writeback=True)
-            logging.debug(f'Base de dados encontrada {self.db}')
+            self.db = shelve.open(self.DB_FILE, writeback=True)
+            self.logger.debug(f'Base de dados encontrada {self.db}')
         except Exception as e:
-            messagebox.showerror(title='ERRO', message='Ocorreu um erro ao abrir a base de dados.')
-            logging.exception(f'1->Ocorreu um erro na função open_database() ao abrir a base de dados: {str(e)}')
-    
+            self.show_error_message('Ocorreu um erro ao tentar abrir a base de dados',
+                                    f'Erro na função open_database(): {str(e)}')
 
     def close_database(self):
-        """Close the shelve database."""
         try:
             if self.db is not None:
                 self.db.close()
         except Exception as e:
-            messagebox.showerror(title='ERRO', message='Ocorreu um erro ao fechar a base de dados.')
-            logging.exception(f'2->Ocorreu um erro na função close_database() ao fechar a base de dados: {str(e)}')
+            self.show_error_message('Erro ao tentar fechar a base de dados',
+                                    f'Erro na função close_database(): {str(e)}')
 
+    def show_error_message(self, title, message):
+        messagebox.showerror(title=title, message=message)
+        self.logger.exception(message)
+
+
+    def setup_logging(self):
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.DEBUG)
+
+        formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
+
+        file_handler = logging.FileHandler(self.LOG_FILE)
+        file_handler.setFormatter(formatter)
+
+        stream_handler = logging.StreamHandler()
+        stream_handler.setFormatter(formatter)
+
+        self.logger.addHandler(file_handler)
+        self.logger.addHandler(stream_handler)
 
     def fetch_record(self):
-        """
-        Fetch a candidate record from the shelve database based on the provided key.
-        Display the record information or an error message.
-        """
         try:
             self.open_database()
             key = self.entries['key'].get()
-            logging.debug(f'Pegando o registo da chave {key}')
-
+            self.logger.debug(f'Pegando o registro da chave {key}')
             if key in self.db:
                 record = self.db[key]
-                #logging.debug(f'Registo encontrado {record}')
-
                 for field in self.fieldnames:
                     value = repr(getattr(record, field))
                     self.entries[field].delete(0, tk.END)
                     self.entries[field].insert(0, value)
-
             else:
-                messagebox.showinfo(title='Informação', message=f'A chave "{key}" não existe.')
-                logging.debug(f'Chave {key} não encontrada')
+                messagebox.showinfo(title='Informação', message=f'A chave "{key}" não existe na base de dados.')
+                self.logger.debug(f'Erro na função fetch_record(), chave {key} não encontrada')
 
-        except (TypeError,ValueError, Exception) as e:
-            messagebox.showerror(title='ERRO', message='Ocorreu um erro')
-            logging.exception(f'3->Ocorreu um erro na função fetch_record(): {e}')
-
+        except Exception as e:
+            self.show_error_message(f'Ocorreu um erro na função fetch_record(): {e}')
         finally:
             self.close_database()
-
 
     def confirm_update_record(self):
         confirmed = messagebox.askyesno("Confirme", "Tem a certeza que pretende Criar ou Atualizar o registo?")
@@ -159,10 +164,47 @@ class PersonGui(tk.Frame):
 
 
     def update_record(self):
-        """
+        try:
+            self.open_database()
+            key = self.entries['key'].get()
+            if key in self.db.keys():
+                record = self.db[key]
+            else:
+                record = Person(nome='?', idade='?', morada='?', telefone=0, email='?', rede_social='?', pais='?', nacionalidade='?',
+                            doc_identificacao=0, nif=0)
+
+            for field in self.fieldnames:
+                user_input = self.entries[field].get()
+                if user_input:
+                    try:
+                        if field in ('idade', 'doc_identificacao', 'nif', 'telefone'):
+                            value = int(user_input)
+                        elif field in ('nome', 'email', 'rede_social', 'morada', 'pais', 'nationalidade'):
+                            value = str(user_input).strip("'")
+                        else:
+                            value = user_input.strip("'")
+
+                        setattr(record, field, value)
+                    except (ValueError, TypeError) as e:
+                        messagebox.showinfo(title='ERRO', message='Erro convertendo o valor introduzido no campo')
+                        self.logger.exception(
+                            f'Erro na função update_record(), convertendo o valor introduzido no campo {field}: {e}')
+                        return
+
+            self.db[key] = record
+        except Exception as e:
+            messagebox.showerror(title='ERRO', message=f'Ocorreu um erro enquanto Criava ou Atualizava o registo')
+            self.logger.exception(f'Ocorreu um erro na função update_record(), ao criar ou atualizar o registo: {e}')
+        finally:
+            self.close_database()
+
+
+
+    """ def update_record(self):
+        """"""
         Update or create a candidate record in the shelve database based on user input.
         Displays an error message if an exception occurs during the update process.
-        """
+        """"""
         try:
             self.open_database()
 
@@ -197,40 +239,52 @@ class PersonGui(tk.Frame):
             messagebox.showerror(title='ERRO', message=f'Ocorreu um erro enquanto Criava ou Atualizava o registo')
             logging.exception(f'5->Ocorreu um erro na função update_record(), enquanto criava ou atualizava o registo: {e}')
         finally:
-            self.close_database()
+            self.close_database() """
 
 
-    def clean_board(self):
-        for field in self.fieldnames:
-            self.entries[field].delete(0, tk.END)
-
-
-    def confirm_delete_record(self):
-        confirmed = messagebox.askyesno("Confirme", "Tem a certeza que pretende apagar o registo?")
-        if confirmed:
-            self.delete_record()
-
-
-    def delete_record(self):
-        try:
-            self.open_database()
-            key = self.entries['key'].get()
-        except ValueError as e:
-            messagebox.showerror(title='Informação', message=f'Introduza uma chave que pretenda apagar.')
-            logging.exception(f'6->Erro na função delete_record(), nenhuma chave intruduzida para apagar: {e}')
-        if key in self.db.keys():
-            del self.db[key]
-            messagebox.showinfo(title='Apagar!!!' ,message=f'{key} Apagado!!')
-            self.close_database()
-
-    
     def confirm_clear_board(self):
         confirmed = messagebox.askyesno("Confirme", "Tem a certeza que pretende limpar todos os campos ?")
         if confirmed:
             self.clean_board()
 
+    def clean_board(self):
+        try:
+            for field in self.fieldnames:
+                self.entries[field].delete(0, tk.END)
+        except Exception as e:
+            self.logger.debug(f'Erro na função clean_board(): {e}')
 
-    def setup_logging(self):
-        logging.basicConfig(level=logging.DEBUG,  # Set the logging level
-                    format='%(asctime)s [%(levelname)s] %(message)s',
-                    handlers=[logging.FileHandler('logs/persongui.log'), logging.StreamHandler()])
+    def confirm_delete_record(self):
+        confirmed = messagebox.askyesno("Confirme", "Tem a certeza que pretende apagar o registo ?")
+        if confirmed:
+            self.delete_record()
+
+    def delete_record(self):
+        self.open_database()
+        try:
+            key = self.entries['key'].get()
+            if key in self.db.keys():
+                del self.db[key]
+                messagebox.showinfo(title='Apagar!!!', message=f'{key} Apagado!!')
+            else:
+                messagebox.showerror(title='Erro', message='A chave não existe na base de dados!')
+        except Exception as e:
+            self.logger.exception(f'Erro na função delete_record(): {e}')
+        self.close_database()
+
+    def show_record_info(self, record):
+        self.open_database()
+        for field in self.fieldnames:
+            info_text = repr(getattr(record, field))
+            self.entries[field].delete(0, tk.END)
+            self.entries[field].insert(0, info_text)
+        self.close_database()
+
+    def confirm_clear_board(self):
+        confirmed = messagebox.askyesno("Confirme", "Tem a certeza que pretende limpar todos os campos ?")
+        if confirmed:
+            self.clean_board()
+
+    def quit_application(self):
+        self.close_database()
+        self.master.destroy()

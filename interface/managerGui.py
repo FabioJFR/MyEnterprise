@@ -18,6 +18,10 @@ class ManagerGui(tk.Frame):
         self.fieldnames = ('nome', 'idade', 'profissao', 'telefone', 'email', 'rede_social', 'seccao', 'salario', 'morada', 'pais', 'nacionalidade', 'doc_identificacao', 'nif', 'data_inicio', 'data_fim', 'curriculo')
         self.entries = {}
         self.db = None
+        img_manager = tk.PhotoImage(file='imagens/manager_25x25.png')
+        self.label = ttk.Label(self, text='Chefia', font=('Verdana', 12, 'bold'), image=img_manager, compound='left')
+        self.label.image = img_manager
+        self.label.pack(pady=5)
         self.setup_logging()
         self.make_widgets()
 
@@ -255,6 +259,30 @@ class ManagerGui(tk.Frame):
         if confirmed:
             self.clean_board()
 
+    # for mac
+    def select_resume(self):
+        try:
+            file_path = filedialog.askopenfilename(title='Selecionar curriculo:', filetypes=[('PDF Files', '*.pdf')])
+            if file_path:
+                self.entries['curriculo'].delete(0, tk.END)
+                self.entries['curriculo'].insert(0, f"'{file_path}'")
+        except Exception as e:
+            messagebox.showerror(title='Erro!', message='Erro ao selecionar o arquivo, deve ser do tipo PDF.')
+            logging.exception(f'9->Erro na função select_resume(): {e}')
+
+    # for mac
+    def open_resume_external(self):
+        try:
+            # Get the resume field value (file path)
+            resume_path = ast.literal_eval(self.entries['curriculo'].get())
+            if resume_path:
+                # Use subprocess to open the file in the default PDF viewer
+                subprocess.run(['open', resume_path], check=True)
+        except (FileNotFoundError,Exception) as e:
+            messagebox.showerror(title='Error', message='Ocorreu um erro ao tentar abrir o curriculo.')
+            logging.exception(f'10->Ocorreu um erro na função open_resume_external(), ao tentar abrir o curriculo. {e}')
+
+    """ # for windows
     def select_resume(self):
         try:
             file_path = filedialog.askopenfilename(title='Select Resume', filetypes=[('PDF Files', '*.pdf')])
@@ -267,6 +295,7 @@ class ManagerGui(tk.Frame):
             messagebox.showerror(title='Error', message='An error occurred while selecting the resume.')
             self.logger.exception(f'Error in select_resume(): {e}')
 
+    # for windows
     def open_resume_external(self):
         try:
             resume_path = self.entries['curriculo'].get().strip("'")
@@ -279,10 +308,11 @@ class ManagerGui(tk.Frame):
             messagebox.showerror(title='Error', message='An error occurred while opening the resume.')
             self.logger.exception(f'Error in open_resume_external(): {e}')
 
+    # for windows
     def update_resume_entry(self, file_path):
         file_path = file_path.strip("'")
         self.entries['curriculo'].delete(0, tk.END)
-        self.entries['curriculo'].insert(0, file_path)
+        self.entries['curriculo'].insert(0, file_path) """
 
     def quit_application(self):
         self.close_database()
