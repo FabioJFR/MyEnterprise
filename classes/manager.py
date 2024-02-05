@@ -77,29 +77,3 @@ class Manager(Person):
 
     def get_person_details(self):
         return '%s =>\n Nome: %s, Idade: %i, Morada: %s, Telefone: %i, Email: %s, Rede Social: %s, País: %s, Nationalidade: %s, Doc. Identificação: %i, NIF: %i' % (self.__class__.__name__, super().get_nome(), super().get_idade(), super().get_morada(), super().get_telefone(), super().get_email(), super().get_rede_social(),super().get_pais(), super().get_nacionalidade(), super().get_doc_id(), super().get_nif())
-
-
-
-if __name__ == '__main__':
-    pessoa = Person('Fabio', 45,'valdoca',912345678, 'email@email.com','facebook','portugal','portugues',12345,54321)
-    print(pessoa)
-    """ pessoa.set_name('luid')
-    print(pessoa.get_name())
-    pessoa.__name = 'davi'
-    print(pessoa.get_name())
-    print(pessoa.get_age())
-    print(pessoa) """
-
-    manager = Manager('manager',60000,'software','jan-12-2024','00000','resume.txt', 'Xavier',60,'Aljustrel',912345678,'mail@mail.pt', 'facebook','Portugal','Portuguese',5545,462424)
-    print(manager)
-    print(manager.get_profissao())
-    manager.giveRaise(0.20,0)
-    print(manager)
-    manager1 = Manager(nome='joao',idade=70,profissao='finances',telefone=123456789,email='joao@mail.com',rede_social='facebook',curriculo='resume.txt',salario=45000,seccao='human resources',data_inicio='23-12-2018',data_fim=000000, morada='Beja', pais='portugal',doc_identificacao=98765, nif=123456,nacionalidade='Espanhol')
-    print(manager.get_company_details())
-    print(manager1)
-    print(manager1.get_person_details())
-
-
-
-

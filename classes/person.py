@@ -98,39 +98,4 @@ class Person():
             #s = i.split('_Person')
             a.append(i)
         return a
-
     
-
-if __name__ == '__main__':
-    pessoa = Person(nome='Fabio',idade=43,morada="Aljustrel",telefone=123456789,email='fabio@mail.pt',rede_social='facebook',pais='Portugal',doc_identificacao=123456,nif=987654,nacionalidade='Portuguesa')
-    #print(pessoa.__name)
-    pessoa.set_nome('luid')
-    print(pessoa.get_nome())
-    print(pessoa.get_nome())
-    c = pessoa.nome = 'davi'
-    print(pessoa.get_nome())
-
-    print(pessoa.get_idade())
-    pessoa.set_idade(50)
-    print(pessoa.get_idade())
-    x = pessoa.idade = 60
-    print(pessoa.idade)
- 
-
-    print(pessoa)
-
-    a = pessoa.get_nome()
-
-    print(a)
-    print(x)
-    print(c)
-
-    b = pessoa.get_class_type()
-    print(b)
-    print(type(b))
-    
-    print('################get_atributes_names#####################')
-    print(pessoa.get_atribute_names())
-    
-    
-
