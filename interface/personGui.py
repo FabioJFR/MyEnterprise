@@ -16,7 +16,7 @@ class PersonGui(tk.Frame):
         self.entries = {}
         self.db = shelve.open(self.shelve_name, writeback=True)  # Open the database
         padding = 10
-        img_pessoas = tk.PhotoImage(file='imagens/employee_25x25.png')
+        img_pessoas = tk.PhotoImage(file='imagens/pessoas_25x25.png')
         self.label = ttk.Label(self, text='Pessoas', font=('Verdana', 12, 'bold'), image=img_pessoas, compound='left')
         self.label.image = img_pessoas
         self.label.config(padding=(padding,0,padding,0))
