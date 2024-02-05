@@ -37,17 +37,4 @@ class Candidate(Person):
     
     def get_class_type(self):
         return self.__class__.__name__
-
-        
-
-if __name__ == '__main__':
-    candidate1 = Candidate(nome='Ivo',idade=35,candidatura='operations',telefone=23456,email='mail.pt',rede_social='facebook',curriculo='curriculo.pdf',morada='Aljustrel',pais='portugal', data='12-03-2020', estado='pending',doc_identificacao=12345,nif=746582,nacionalidade='portuguesa')
-    print(candidate1)
-    candidate1.get_curriculo()
-    print(candidate1.get_curriculo())
-    print(candidate1.get_data())
-    print(candidate1.get_estado())
-    print(candidate1.get_nome())
-    print(candidate1)
-
     
