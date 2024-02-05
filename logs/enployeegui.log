@@ -213,3 +213,47 @@ AttributeError: 'Employee' object has no attribute 'nome'. Did you mean: 'name'?
 2024-02-04 21:42:14,014 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x104dfbc20>
 2024-02-04 22:30:25,139 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x10109dfa0>
 2024-02-04 22:30:42,885 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x101075d90>
+2024-02-05 10:27:47,974 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000001C2E31718B0>
+2024-02-05 10:27:59,903 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000001C2E31D7B00>
+2024-02-05 10:30:38,169 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x0000017052A430B0>
+2024-02-05 11:54:05,281 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000001A49CE2FAA0>
+2024-02-05 11:55:33,146 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002054F25FAA0>
+2024-02-05 11:57:20,454 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002054F25F9E0>
+2024-02-05 11:57:28,565 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002054F6928A0>
+2024-02-05 11:57:45,750 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002054F692660>
+2024-02-05 11:57:45,752 [DEBUG] Pegando o registro da chave 'joao'
+2024-02-05 11:58:07,592 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002054F5FFEC0>
+2024-02-05 11:58:14,933 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002054F2DE840>
+2024-02-05 11:58:14,935 [DEBUG] Pegando o registro da chave 'joao'
+2024-02-05 11:58:26,404 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002054F5FFEC0>
+2024-02-05 11:58:31,351 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002054F2DE840>
+2024-02-05 11:58:31,353 [DEBUG] Pegando o registro da chave 'joao'
+2024-02-05 11:58:32,888 [DEBUG] Erro na função fetch_record(), chave 'joao' não encontrada
+2024-02-05 11:58:37,801 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002054F693620>
+2024-02-05 12:00:01,681 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002ACE737FAA0>
+2024-02-05 12:01:45,389 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000001D41568FAA0>
+2024-02-05 12:01:51,952 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002B0F4C8DDF0>
+2024-02-05 12:03:47,667 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000001BBE60AFAA0>
+2024-02-05 12:04:00,292 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000001BBE4531340>
+2024-02-05 12:08:06,817 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000001A90850FAA0>
+2024-02-05 12:28:12,163 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002AF54C94290>
+2024-02-05 12:28:15,834 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002AF54C96A50>
+2024-02-05 12:28:24,718 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002AF54C96330>
+2024-02-05 12:28:24,720 [DEBUG] Pegando o registro da chave 
+2024-02-05 12:28:26,257 [DEBUG] Erro na função fetch_record(), chave  não encontrada
+2024-02-05 12:36:18,510 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002A748C60200>
+2024-02-05 12:36:20,808 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002A748C601A0>
+2024-02-05 12:36:20,810 [DEBUG] Pegando o registro da chave 
+2024-02-05 12:36:22,296 [DEBUG] Erro na função fetch_record(), chave  não encontrada
+2024-02-05 12:36:33,684 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002A748C62A80>
+2024-02-05 12:36:43,758 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x000002A748C60200>
+2024-02-05 12:36:43,760 [DEBUG] Pegando o registro da chave 
+2024-02-05 12:36:45,762 [DEBUG] Erro na função fetch_record(), chave  não encontrada
+2024-02-05 12:40:48,286 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x0000023E63D80230>
+2024-02-05 12:40:53,278 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x0000023E63D27050>
+2024-02-05 12:40:53,281 [DEBUG] Pegando o registro da chave 
+2024-02-05 12:40:55,098 [DEBUG] Erro na função fetch_record(), chave  não encontrada
+2024-02-05 12:41:00,692 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x0000023E63D829F0>
+2024-02-05 12:41:09,895 [DEBUG] Base de dados encontrada <shelve.DbfilenameShelf object at 0x0000023E63D82330>
+2024-02-05 12:41:09,899 [DEBUG] Pegando o registro da chave 
+2024-02-05 12:41:11,237 [DEBUG] Erro na função fetch_record(), chave  não encontrada

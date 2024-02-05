@@ -5,6 +5,7 @@ from classes.manager import Manager
 import ast
 import subprocess
 import logging
+
 import os
 
 
@@ -20,7 +21,7 @@ class ManagerGui(tk.Frame):
         self.db = None
         self.setup_logging()
         self.make_widgets()
-
+        
     def make_widgets(self):
         self.open_database()
         form = tk.Frame(self)
@@ -52,89 +53,85 @@ class ManagerGui(tk.Frame):
         # Buttons
         style = ttk.Style()
         style.configure("W.TButton", font=('Verdana', 10))
-
+    
         row1_buttons = tk.Frame(self)
         row1_buttons.pack(side=tk.TOP)
 
         img_criar = tk.PhotoImage(file='imagens/create_16x16.png')
-        button_1 = ttk.Button(row1_buttons, text='Criar|Atualizar', command=self.confirm_update_record, width=17,
-                              style='W.TButton', image=img_criar, compound='left')
+        button_1 = ttk.Button(row1_buttons, text='Criar|Atualizar', command=self.confirm_update_record, width=17, style='W.TButton', image=img_criar, compound='left')
         button_1.image = img_criar
         button_1.pack(side=tk.LEFT, padx=2, pady=2)
 
         img_mostrar = tk.PhotoImage(file='imagens/show_16x16.png')
-        button_2 = ttk.Button(row1_buttons, text='Mostrar Campos', command=self.fetch_record, width=17,
-                              style='W.TButton', image=img_mostrar, compound='left')
+        button_2 = ttk.Button(row1_buttons, text='Mostrar Campos', command=self.fetch_record, width=17, style='W.TButton', image=img_mostrar, compound='left')
         button_2.image = img_mostrar
-        button_2.pack(side=tk.LEFT, padx=2, pady=2)
+        button_2.pack(side=tk.LEFT, padx=2,pady=2)
 
         img_curriculo = tk.PhotoImage(file='imagens/curriculo_16x16.png')
-        button_3 = ttk.Button(row1_buttons, text='Selecionar Curriculo', command=self.select_resume, width=17,
-                              style='W.TButton', image=img_curriculo, compound='left')
+        button_3 = ttk.Button(row1_buttons, text='Selecionar Curriculo', command=self.select_resume, width=17, style='W.TButton', image=img_curriculo, compound='left')
         button_3.image = img_curriculo
-        button_3.pack(side=tk.RIGHT, padx=2, pady=2)
+        button_3.pack(side=tk.RIGHT, padx=2,pady=2)
 
         # Buttons row 2
         row2_buttons = tk.Frame(self)
         row2_buttons.pack()
 
         img_delete = tk.PhotoImage(file='imagens/delete_16x16.png')
-        button_6 = ttk.Button(row2_buttons, text='Apagar', command=self.confirm_delete_record, width=17,
-                              style='W.TButton', image=img_delete, compound='left')
+        button_6 = ttk.Button(row2_buttons, text='Apagar', command=self.confirm_delete_record, width=17, style='W.TButton', image=img_delete, compound='left')
         button_6.image = img_delete
-        button_6.pack(side=tk.LEFT, padx=2, pady=2)
+        button_6.pack(side=tk.LEFT, padx=2,pady=2)
 
         img_limpar = tk.PhotoImage(file='imagens/clean_16x16.png')
-        button_5 = ttk.Button(row2_buttons, text='Limpar Campos', command=self.confirm_clear_board, width=17,
-                              style='W.TButton', image=img_limpar, compound='left')
+        button_5 =ttk.Button(row2_buttons, text='Limpar Campos', command=self.confirm_clear_board, width=17, style='W.TButton', image=img_limpar, compound='left')
         button_5.image = img_limpar
-        button_5.pack(side=tk.LEFT, padx=2, pady=2)
+        button_5.pack(side=tk.LEFT, padx=2,pady=2)
 
         img_open = tk.PhotoImage(file='imagens/open_16x16.png')
-        button_4 = ttk.Button(row2_buttons, text='Abrir Curriculo', command=self.open_resume_external, width=17,
-                              style='W.TButton', image=img_open, compound='left')
+        button_4 = ttk.Button(row2_buttons, text='Abrir Curriculo', command=self.open_resume_external, width=17, style='W.TButton', image=img_open, compound='left')
         button_4.image = img_open
-        button_4.pack(side=tk.RIGHT, padx=2, pady=2)
-
+        button_4.pack(side=tk.RIGHT, padx=2,pady=2)
+        
         # Buttons row 3
         row3_buttons = tk.Frame(self)
         row3_buttons.pack(side=tk.BOTTOM)
 
         img_menu = tk.PhotoImage(file='imagens/menu_16x16.png')
-        button_7 = ttk.Button(row3_buttons, text='Menu Principal', command=self.controller.show_mainGui, width=26,
-                              style='W.TButton', image=img_menu, compound='left')
+        button_7 = ttk.Button(row3_buttons, text='Menu Principal', command=self.controller.show_mainGui, width=26, style='W.TButton', image=img_menu, compound='left')
         button_7.image = img_menu
-        button_7.pack(side=tk.LEFT, padx=5, pady=2)
+        button_7.pack(side=tk.LEFT, padx=5,pady=2)
 
         img_sair = tk.PhotoImage(file='imagens/quit_16x16.png')
-        button_8 = ttk.Button(row3_buttons, text='Sair', command=self.quit_application, width=25,
-                              style='W.TButton', image=img_sair, compound='left')
+        button_8 = ttk.Button(row3_buttons, text='Sair', command=self.quit_application, width=25, style='W.TButton', image=img_sair, compound='left')
         button_8.image = img_sair
         button_8.pack(side=tk.RIGHT, padx=5, pady=2)
 
     def open_database(self):
         try:
             self.db = shelve.open(self.DB_FILE, writeback=True)
-            self.logger.debug(f'Base de dados encontrada {self.db}')
+            logging.debug(f'Base de dados encontrada {self.db}')
         except Exception as e:
-            self.show_error_message('Ocorreu um erro ao tentar abrir a base de dados',
-                                    f'Erro na função open_database(): {str(e)}')
+            self.show_error_message('Ocorreu um erro ao tentar abrir a base de dados', f'Erro na função open_database(): {str(e)}')
 
     def close_database(self):
+        """Close the shelve database."""
         try:
             if self.db is not None:
                 self.db.close()
         except Exception as e:
-            self.show_error_message('Erro ao tentar fechar a base de dados',
-                                    f'Erro na função close_database(): {str(e)}')
+            self.show_error_message('Erro ao tentar fechar a base de dados', f'Erro na função close_database(): {str(e)}')
 
     def show_error_message(self, title, message):
         messagebox.showerror(title=title, message=message)
-        self.logger.exception(message)
+        logging.exception(message)
 
+    """ def setup_logging(self):
+        logging.basicConfig(level=logging.DEBUG,  # Set the logging level
+                            format='%(asctime)s [%(levelname)s] %(message)s',
+                            handlers=[logging.FileHandler(self.LOG_FILE), logging.StreamHandler()]) """
+    
     def setup_logging(self):
-        self.logger = logging.getLogger(__name__)
-        self.logger.setLevel(logging.DEBUG)
+        logger = logging.getLogger(__name__)
+        logger.setLevel(logging.DEBUG)
 
         formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
 
@@ -144,14 +141,20 @@ class ManagerGui(tk.Frame):
         stream_handler = logging.StreamHandler()
         stream_handler.setFormatter(formatter)
 
-        self.logger.addHandler(file_handler)
-        self.logger.addHandler(stream_handler)
+        logger.addHandler(file_handler)
+        logger.addHandler(stream_handler)
+
+        return logger
 
     def fetch_record(self):
+        """
+        Fetch a manager record from the shelve database based on the provided key.
+        Display the record information or an error message.
+        """
         try:
             self.open_database()
             key = self.entries['key'].get()
-            self.logger.debug(f'Pegando o registro da chave {key}')
+            logging.debug(f'Pegando o registro da chave {key}')
             if key in self.db:
                 record = self.db[key]
                 for field in self.fieldnames:
@@ -160,9 +163,9 @@ class ManagerGui(tk.Frame):
                     self.entries[field].insert(0, value)
             else:
                 messagebox.showinfo(title='Informação', message=f'A chave "{key}" não existe na base de dados.')
-                self.logger.debug(f'Erro na função fetch_record(), chave {key} não encontrada')
+                logging.debug(f'Erro na função fetch_record(), chave {key} não encontrada')
 
-        except Exception as e:
+        except Exception as e:  
             self.show_error_message(f'Ocorreu um erro na função fetch_record(): {e}')
         finally:
             self.close_database()
@@ -172,18 +175,21 @@ class ManagerGui(tk.Frame):
         if confirmed:
             self.update_record()
 
-    def update_record(self):
+    def update_record(self):  
+        """
+        Update or create a candidate record in the shelve database based on user input.
+        Displays an error message if an exception occurs during the update process.
+        """
         try:
             self.open_database()
             key = self.entries['key'].get()
             if key in self.db.keys():
                 record = self.db[key]
             else:
-                record = Manager(nome='?', idade='?', profissao='?', morada='?', telefone='?', email='?',
-                                 rede_social='?', pais='?', nacionalidade='?', doc_identificacao='?', nif='?',
-                                 salario='?', seccao='?', data_inicio='?', data_fim='?', curriculo='?')
+                record = Manager(nome='?', idade='?', profissao='?', morada='?', telefone='?', email='?', rede_social='?', pais='?', nacionalidade='?', doc_identificacao='?', nif='?', salario='?', seccao='?', data_inicio='?', data_fim='?', curriculo='?')
 
             for field in self.fieldnames:
+                # Use safer alternative ast.literal_eval instead of eval for user input
                 user_input = self.entries[field].get()
                 if user_input:
                     try:
@@ -191,9 +197,7 @@ class ManagerGui(tk.Frame):
                             value = int(user_input)
                         elif field in ('salario'):
                             value = float(user_input)
-                        elif field in (
-                        'nome', 'profissao', 'email', 'rede_social', 'morada', 'pais', 'data', 'data_inicio',
-                        'data_fim', 'seccao', 'nationalidade', 'curriculo'):
+                        elif field in ('nome', 'profissao', 'email', 'rede_social', 'morada', 'pais', 'data', 'data_inicio', 'data_fim', 'seccao', 'nationalidade', 'curriculo'):
                             value = str(user_input).strip("'")
                         else:
                             value = user_input.strip("'")
@@ -201,14 +205,13 @@ class ManagerGui(tk.Frame):
                         setattr(record, field, value)
                     except (ValueError, TypeError) as e:
                         messagebox.showinfo(title='ERRO', message='Erro convertendo o valor introduzido no campo')
-                        self.logger.exception(
-                            f'Erro na função update_record(), convertendo o valor introduzido no campo {field}: {e}')
+                        logging.exception(f'Erro na função update_record(), convertendo o valor introduzido no campo {field}: {e}')
                         return
 
             self.db[key] = record
         except Exception as e:
             messagebox.showerror(title='ERRO', message=f'Ocorreu um erro enquanto Criava ou Atualizava o registo')
-            self.logger.exception(f'Ocorreu um erro na função update_record(), ao criar ou atualizar o registo: {e}')
+            logging.exception(f'Ocorreu um erro na função update_record(), ao criar ou atualizar o registo: {e}')
         finally:
             self.close_database()
 
@@ -222,7 +225,7 @@ class ManagerGui(tk.Frame):
             for field in self.fieldnames:
                 self.entries[field].delete(0, tk.END)
         except Exception as e:
-            self.logger.debug(f'Erro na função clean_board(): {e}')
+            logging.debug(f'Erro na função clean_board(): {e}')
 
     def confirm_delete_record(self):
         confirmed = messagebox.askyesno("Confirme", "Tem a certeza que pretende apagar o registo ?")
@@ -239,7 +242,7 @@ class ManagerGui(tk.Frame):
             else:
                 messagebox.showerror(title='Erro', message='A chave não existe na base de dados!')
         except Exception as e:
-            self.logger.exception(f'Erro na função delete_record(): {e}')
+            logging.exception(f'Erro na função delete_record(): {e}')
         self.close_database()
 
     def show_record_info(self, record):
@@ -255,6 +258,29 @@ class ManagerGui(tk.Frame):
         if confirmed:
             self.clean_board()
 
+    # para mac
+    """ def select_resume(self):
+        try:
+            file_path = filedialog.askopenfilename(title='Selecionar curriculo:', filetypes=[('PDF Files', '*.pdf')])
+            if file_path:
+                self.entries['curriculo'].delete(0, tk.END)
+                self.entries['curriculo'].insert(0, f"'{file_path}'")
+        except Exception as e:
+            messagebox.showerror(title='Erro!', message='Erro ao selecionar o arquivo, deve ser do tipo PDF.')
+            logging.exception(f'9->Erro na função select_resume(): {e}')
+
+    def open_resume_external(self):
+        try:
+            # Get the resume field value (file path)
+            resume_path = ast.literal_eval(self.entries['curriculo'].get())
+            if resume_path:
+                # Use subprocess to open the file in the default PDF viewer
+                subprocess.run(['open', resume_path], check=True)
+        except (FileNotFoundError,Exception) as e:
+            messagebox.showerror(title='Error', message='Ocorreu um erro ao tentar abrir o curriculo.')
+            logging.exception(f'10->Ocorreu um erro na função open_resume_external(), ao tentar abrir o curriculo. {e}') """
+    
+    # para windows (we use the os library)
     def select_resume(self):
         try:
             file_path = filedialog.askopenfilename(title='Select Resume', filetypes=[('PDF Files', '*.pdf')])
@@ -262,10 +288,10 @@ class ManagerGui(tk.Frame):
                 self.update_resume_entry(file_path)
         except FileNotFoundError as e:
             messagebox.showerror(title='Error', message='File not found.')
-            self.logger.exception(f'Error in select_resume(): {e}')
+            logging.exception(f'Error in select_resume(): {e}')
         except Exception as e:
             messagebox.showerror(title='Error', message='An error occurred while selecting the resume.')
-            self.logger.exception(f'Error in select_resume(): {e}')
+            logging.exception(f'Error in select_resume(): {e}')
 
     def open_resume_external(self):
         try:
@@ -274,12 +300,13 @@ class ManagerGui(tk.Frame):
                 os.startfile(resume_path)
         except FileNotFoundError as e:
             messagebox.showerror(title='Error', message='File not found.')
-            self.logger.exception(f'Error in open_resume_external(): {e}')
+            logging.exception(f'Error in open_resume_external(): {e}')
         except Exception as e:
             messagebox.showerror(title='Error', message='An error occurred while opening the resume.')
-            self.logger.exception(f'Error in open_resume_external(): {e}')
+            logging.exception(f'Error in open_resume_external(): {e}')
 
     def update_resume_entry(self, file_path):
+        # Remove single quotes if present
         file_path = file_path.strip("'")
         self.entries['curriculo'].delete(0, tk.END)
         self.entries['curriculo'].insert(0, file_path)
