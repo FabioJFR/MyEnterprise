@@ -19,9 +19,10 @@ if __name__ == '__main__':
     root = tk.Tk()
     img = tk.PhotoImage(file='imagens/MyEnterprise_icon.png')
     root.iconphoto(True, img)
-    root.iconbitmap(bitmap='imagens/MyEnterprise_icon.ico')
+    #root.iconbitmap(bitmap='imagens/MyEnterprise_icon.ico')
     root.wm_title('MyEnterprise')
+    img_icon = tk.PhotoImage(file='imagens/MyEnterprise_icon_75x75.png')
+    root.iconbitmap(img_icon)
     
-
     app = MyEnterprise(root)
     root.mainloop()

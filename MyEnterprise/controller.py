@@ -14,7 +14,7 @@ class Controller:
     def __init__(self, root):
         self.root = root
         self.show_mainGui()
-        self.setup_logging()
+        self.setup_logging_a()
         
 
     def show_mainGui(self):
@@ -147,10 +147,10 @@ class Controller:
         ok_button.pack(pady=10)
 
 
-    def setup_logging(self):
+    def setup_logging_a(self):
         logging.basicConfig(level=logging.DEBUG,  # Set the logging level
                     format='%(asctime)s [%(levelname)s] %(message)s',
-                    handlers=[logging.FileHandler('logs/enployeegui.log'), logging.StreamHandler()])
+                    handlers=[logging.FileHandler('logs/controler.log'), logging.StreamHandler()])
         
     
     
