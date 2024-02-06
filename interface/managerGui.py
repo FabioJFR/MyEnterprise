@@ -259,7 +259,7 @@ class ManagerGui(tk.Frame):
         if confirmed:
             self.clean_board()
 
-    # for mac
+    """ # for mac
     def select_resume(self):
         try:
             file_path = filedialog.askopenfilename(title='Selecionar curriculo:', filetypes=[('PDF Files', '*.pdf')])
@@ -280,9 +280,9 @@ class ManagerGui(tk.Frame):
                 subprocess.run(['open', resume_path], check=True)
         except (FileNotFoundError,Exception) as e:
             messagebox.showerror(title='Error', message='Ocorreu um erro ao tentar abrir o curriculo.')
-            logging.exception(f'10->Ocorreu um erro na função open_resume_external(), ao tentar abrir o curriculo. {e}')
+            logging.exception(f'10->Ocorreu um erro na função open_resume_external(), ao tentar abrir o curriculo. {e}') """
 
-    """ # for windows
+    # for windows
     def select_resume(self):
         try:
             file_path = filedialog.askopenfilename(title='Select Resume', filetypes=[('PDF Files', '*.pdf')])
@@ -312,7 +312,7 @@ class ManagerGui(tk.Frame):
     def update_resume_entry(self, file_path):
         file_path = file_path.strip("'")
         self.entries['curriculo'].delete(0, tk.END)
-        self.entries['curriculo'].insert(0, file_path) """
+        self.entries['curriculo'].insert(0, file_path)
 
     def quit_application(self):
         self.close_database()
