@@ -199,49 +199,6 @@ class PersonGui(tk.Frame):
             self.close_database()
 
 
-
-    """ def update_record(self):
-        """"""
-        Update or create a candidate record in the shelve database based on user input.
-        Displays an error message if an exception occurs during the update process.
-        """"""
-        try:
-            self.open_database()
-
-            key = self.entries['key'].get()
-            if key in self.db.keys():
-                record = self.db[key]
-                #logging.debug(f'Função update_record() - pegou o record.\n {record}')
-            else:
-                record = Person(nome='?', idade='?', morada='?', telefone=0, email='?', rede_social='?', pais='?', nacionalidade='?',
-                            doc_identificacao=0, nif=0)
-
-            for field in self.fieldnames:
-                # Use safer alternative ast.literal_eval instead of eval for user input
-                user_input = self.entries[field].get()
-                if user_input:
-                    try:
-                        if field in ('idade', 'doc_identificacao', 'nif', 'telefone'):
-                            value = int(user_input)
-                        elif field in ('nome', 'email', 'rede_social', 'morada', 'pais', 'nationalidade'):
-                            value = str(user_input).strip("'")
-                        else:
-                            value = user_input.strip("'")
-
-                        setattr(record, field, value)
-                    except (ValueError, TypeError) as e:
-                        messagebox.showinfo(title='ERRO', message=f'Erro convertendo o valor introduzido no campo')
-                        logging.exception(f'4->Erro na função update_record(), convertendo o valor introduzido no campo {field}: {e}')
-                        return
-
-            self.db[key] = record
-        except Exception as e:
-            messagebox.showerror(title='ERRO', message=f'Ocorreu um erro enquanto Criava ou Atualizava o registo')
-            logging.exception(f'5->Ocorreu um erro na função update_record(), enquanto criava ou atualizava o registo: {e}')
-        finally:
-            self.close_database() """
-
-
     def confirm_clear_board(self):
         confirmed = messagebox.askyesno("Confirme", "Tem a certeza que pretende limpar todos os campos ?")
         if confirmed:
